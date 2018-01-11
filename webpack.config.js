@@ -39,7 +39,7 @@ module.exports = {
      },
      {
          test: /\.(csv|tsv)$/,
-         use: [
+         use: [ 
            'csv-loader' 
          ]
        },
