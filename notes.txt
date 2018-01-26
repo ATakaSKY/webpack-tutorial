@@ -1,19 +1,4 @@
-Tree Shaking
-
-#Removes dead code from the code.
-#in order to take advantage of tree shaking, you must...
-    --Use ES2015 module syntax (i.e. import and export).
-    --Include a minifier that supports dead code removal (e.g. the UglifyJSPlugin).
-
-#Say we have 100 functions exported from a module and we just want to use a couple of them.
-We can leverage tree shaking in this case and "import" only those functions from the exported module.
-
-#Our output bundle is still gonna have all functions exported from an external module. In order to completely 
-get rid of unnecassary code, we can uglify the code with "uglifyjs-webpack-plugin" plugin.
-
-##Caveats
-Webpack relies on UglifyJS to perform tree shaking.
-In general, when a tool cannot guarantee that a particular code path doesn't lead to side-effects, 
-this code may remain in the generated bundle even if you are sure it shouldn't. 
-Common situations include invoking a function from a third-party module that 
-webpack and/or the minifier cannot inspect, re-exporting functions imported from third-party modules, etc.
+## The goals of development and production builds differ greatly. 
+In development, we want strong source mapping and a localhost server with live reloading or hot module replacement. 
+In production, our goals shift to a focus on minified bundles, lighter weight source maps, and optimized assets to improve load time. 
+With this logical separation at hand, its typically recommended to write separate webpack configurations for each environment.
