@@ -1,4 +1,11 @@
-## The goals of development and production builds differ greatly. 
-In development, we want strong source mapping and a localhost server with live reloading or hot module replacement. 
-In production, our goals shift to a focus on minified bundles, lighter weight source maps, and optimized assets to improve load time. 
-With this logical separation at hand, its typically recommended to write separate webpack configurations for each environment.
+##Code splitting
+-This feature allows you to split your code into various bundles which can then be loaded on demand or in parallel.
+-It can be used to achieve smaller bundles and control resource load prioritization which, if used correctly, can have a major impact on load time.
+
+#Three approaches for splitting code:
+*Entry Points: Manually split code using entry configuration(has pitfalls - If there are any duplicated modules between entry chunks they will be included in both bundles.).
+*Prevent Duplication: Use the CommonsChunkPlugin to dedupe and split chunks(used often).
+*Dynamic Imports: Split code via inline function calls within modules(also a good approach).
+
+#3rd approach - Dynamic Imports
+import() calls use promises internally. If you use import() with older browsers, remember to shim Promise using a polyfill such as es6-promise or promise-polyfill.
